@@ -1,0 +1,21 @@
+{
+  "name": "fast-hosts-lookup",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjethani/fast-hosts-lookup.git"
+  },
+  "keywords": [
+    "hosts"
+  ],
+  "author": "Manish Jethani <code@manishjethani.io>",
+  "bugs": {
+    "url": "https://github.com/mjethani/fast-hosts-lookup/issues"
+  },
+  "homepage": "https://github.com/mjethani/fast-hosts-lookup#readme"
+}

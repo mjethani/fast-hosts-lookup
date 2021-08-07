@@ -3,9 +3,9 @@
 'use strict';
 
 function looksLikeIPAddress(hostname) {
-  let lastCharCode = hostname.charCodeAt(hostname.length - 1);
-  return lastCharCode === 93 || // IPv6
-         (lastCharCode >= 48 && lastCharCode <= 57 &&
+  let firstCharCode = hostname.charCodeAt(0);
+  return firstCharCode === 91 || // IPv6
+         (firstCharCode >= 48 && firstCharCode <= 57 &&
           /^\d+\.\d+\.\d+\.\d+$/.test(hostname)); // IPv4
 }
 

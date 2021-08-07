@@ -35,4 +35,8 @@ exports.FastHostsLookup = class FastHostsLookup {
 
     return false;
   }
+
+  clear() {
+    this._set.clear();
+  }
 };

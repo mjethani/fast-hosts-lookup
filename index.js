@@ -11,22 +11,32 @@ function looksLikeIPAddress(hostname) {
 
 exports.FastHostsLookup = class FastHostsLookup {
   constructor() {
-    this._set = new Set();
+    this._hosts = new Set();
+    this._exceptions = new Set();
   }
 
   add(hostname) {
-    this._set.add(hostname);
+    this._hosts.add(hostname);
+  }
+
+  addException(hostname) {
+    this._exceptions.add(hostname);
   }
 
   has(hostname) {
     if (hostname === '')
       return false;
 
-    if (looksLikeIPAddress(hostname))
-      return this._set.has(hostname);
+    if (looksLikeIPAddress(hostname)) {
+      return this._hosts.has(hostname) &&
+             (this._exceptions.size === 0 || !this._exceptions.has(hostname));
+    }
 
     while (hostname !== '') {
-      if (this._set.has(hostname))
+      if (this._exceptions.size > 0 && this._exceptions.has(hostname))
+        return false;
+
+      if (this._hosts.has(hostname))
         return true;
 
       let dotIndex = hostname.indexOf('.');
@@ -37,6 +47,7 @@ exports.FastHostsLookup = class FastHostsLookup {
   }
 
   clear() {
-    this._set.clear();
+    this._hosts.clear();
+    this._exceptions.clear();
   }
 };

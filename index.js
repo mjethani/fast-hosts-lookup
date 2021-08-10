@@ -32,7 +32,7 @@ exports.FastHostsLookup = class FastHostsLookup {
              (this._exceptions.size === 0 || !this._exceptions.has(hostname));
     }
 
-    while (hostname !== '') {
+    do {
       if (this._exceptions.size > 0 && this._exceptions.has(hostname))
         return false;
 
@@ -41,7 +41,7 @@ exports.FastHostsLookup = class FastHostsLookup {
 
       let dotIndex = hostname.indexOf('.');
       hostname = dotIndex === -1 ? '' : hostname.substr(dotIndex + 1);
-    }
+    } while (hostname !== '');
 
     return false;
   }

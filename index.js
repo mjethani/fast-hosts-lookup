@@ -32,6 +32,12 @@ exports.FastHostsLookup = class FastHostsLookup {
              (this._exceptions.size === 0 || !this._exceptions.has(hostname));
     }
 
+    if (this._exceptions.size > 0 && this._exceptions.has('|' + hostname))
+      return false;
+
+    if (this._hosts.has('|' + hostname))
+      return true;
+
     do {
       if (this._exceptions.size > 0 && this._exceptions.has(hostname))
         return false;
